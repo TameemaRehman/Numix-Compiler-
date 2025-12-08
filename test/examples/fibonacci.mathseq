@@ -1,4 +1,5 @@
-# Fibonacci sequence generator
+# Fibonacci Sequence Generator 
+
 func fibonacci(n: int) -> sequence {
     let a: int = 0
     let b: int = 1
@@ -20,4 +21,5 @@ func main() -> int {
     let fib_sequence: sequence = fibonacci(count)
     print "Fibonacci sequence: " fib_sequence
     return 0
+
 }
