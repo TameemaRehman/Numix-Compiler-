@@ -1,4 +1,4 @@
-# MathSeq Compiler
+# Numix Compiler
 
 A domain-specific language (DSL) compiler for numerical patterns and mathematical sequences, implemented in C++.
 
@@ -356,5 +356,6 @@ MIT License - See LICENSE file for details
 Tameema Rehman, Uzair Hussain, Huzaifa Naseer, Umar Farooq, Rayyan Solanki
 
 ## Acknowledgments
+
 
 This compiler was built as an educational project to demonstrate compiler construction principles applied to domain-specific languages for mathematical computing.
