@@ -4,7 +4,7 @@ A domain-specific language (DSL) compiler for numerical patterns and mathematica
 
 ## Overview
 
-MathSeq is an imperative/procedural language designed specifically for working with mathematical sequences, patterns, and numerical computations. It features Python-like syntax with strict typing and compiles to intermediate three-address code.
+Numix is an imperative/procedural language designed specifically for working with mathematical sequences, patterns, and numerical computations. It features Python-like syntax with strict typing and compiles to intermediate three-address code.
 
 ## Language Features
 
@@ -359,3 +359,4 @@ Tameema Rehman, Uzair Hussain, Huzaifa Naseer, Umar Farooq, Rayyan Solanki
 
 
 This compiler was built as an educational project to demonstrate compiler construction principles applied to domain-specific languages for mathematical computing.
+
