@@ -1,3 +1,5 @@
+// Phase 1 of the Compiler
+
 #include "../include/token.h"
 #include <cctype>
 #include <iostream>
@@ -208,4 +210,5 @@ std::vector<Token> Lexer::tokenize() {
         tokens.push_back(token);
     }
     return tokens;
+
 }
