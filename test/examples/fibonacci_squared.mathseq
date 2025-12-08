@@ -1,4 +1,5 @@
-# Fibonacci + square mapping example
+# Fibonacci + Square Mapping Example 
+
 func fibonacci(n: int) -> sequence {
     let a: int = 0
     let b: int = 1
@@ -28,4 +29,5 @@ func main() -> int {
     
     return 0
 }
+
 
