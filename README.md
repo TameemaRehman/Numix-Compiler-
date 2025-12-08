@@ -399,14 +399,7 @@ The compiler provides detailed error messages:
 
 Contributions are welcome! Please feel free to submit pull requests or open issues.
 
-## License
-
-MIT License - See LICENSE file for details
-
-## Author
-
-Syeda Fakhira Saghir
-
 ## Acknowledgments
+
 
 This compiler was built as an educational project to demonstrate compiler construction principles applied to domain-specific languages for mathematical computing.
