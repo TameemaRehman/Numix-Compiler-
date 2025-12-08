@@ -1,3 +1,5 @@
+// Header File - used for Lexer.cpp
+
 #ifndef TOKEN_H
 #define TOKEN_H
 
@@ -69,5 +71,6 @@ public:
     Token nextToken();
     std::vector<Token> tokenize();
 };
+
 
 #endif
