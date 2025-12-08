@@ -1,4 +1,4 @@
-# Interactive calculator example
+# Interactive Simple Arithmetic Calculator Example
 
 func calculate(a: int, b: int, choice: int) -> int {
     if choice == 1 {
@@ -69,3 +69,4 @@ func main() -> int {
     
     return 0
 }
+
