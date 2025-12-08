@@ -1,0 +1,37 @@
+# Fibonacci sequence generator
+func fibonacci(n: int) -> sequence {
+    let a: int = 0
+    let b: int = 1
+    let result: sequence = [a, b]
+    
+    while length(result) < n {
+        let next: int = a + b
+        result = result + [next]
+        a = b
+        b = next
+    }
+    
+    return result
+}
+
+# Square mapping function
+func square(x: int) -> int {
+    return x * x
+}
+
+# Main program
+func main() -> int {
+    let count: int = 10
+    let fib_sequence: sequence = fibonacci(count)
+    let squared_sequence: sequence = map(fib_sequence, square)
+    
+    print "Fibonacci sequence: " fib_sequence
+    print "Squared sequence: " squared_sequence
+    
+    # Pattern matching example
+    if length(fib_sequence) > 5 and fib_sequence[0] == 0 {
+        print "Pattern matched: Sequence starts with 0 and has more than 5 elements"
+    }
+    
+    return 0
+}

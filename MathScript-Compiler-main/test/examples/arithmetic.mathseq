@@ -1,0 +1,24 @@
+# Basic arithmetic operations
+func calculate(a: int, b: int) -> int {
+    let sum: int = a + b
+    let product: int = a * b
+    let difference: int = a - b
+    
+    if sum > product {
+        return sum
+    } else {
+        return product
+    }
+}
+
+func main() -> int {
+    let x: int = 15
+    let y: int = 3
+    let result: int = calculate(x, y)
+    
+    print "x = " x
+    print "y = " y
+    print "Result: " result
+    
+    return 0
+}

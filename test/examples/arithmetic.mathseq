@@ -1,0 +1,71 @@
+# Interactive calculator example
+
+func calculate(a: int, b: int, choice: int) -> int {
+    if choice == 1 {
+        return a + b
+    }
+    if choice == 2 {
+        return a - b
+    }
+    if choice == 3 {
+        return a * b
+    }
+    if choice == 4 {
+        return a / b
+    }
+    if choice == 5 {
+        return a % b
+    }
+    return 0
+}
+
+func main() -> int {
+    print "=== MathSeq Calculator ==="
+    
+    let x: int = input("Enter integer 1: ")
+    let y: int = input("Enter integer 2: ")
+    
+    print "Select operation:"
+    print "1 -> Addition (+)"
+    print "2 -> Subtraction (-)"
+    print "3 -> Multiplication (*)"
+    print "4 -> Division (/)"
+    print "5 -> Modulo (%)"
+    
+
+    
+    let choice: int = input("Enter Operation (1: +, 2: -, 3: *, 4: / , 5: % ) ")
+
+    if choice < 1 or choice > 5 {
+        print "Invalid operation selected. Please choose a number between 1 and 5."
+        return 0
+    }
+    
+    if (choice == 4 or choice == 5) and y == 0 {
+        print "Error: second integer cannot be zero for division or modulo."
+        return 0
+    }
+    
+    let result: int = calculate(x, y, choice)
+    
+    let operationLabel: sequence = "Addition (+)"
+    if choice == 2 {
+        operationLabel = "Subtraction (-)"
+    }
+    if choice == 3 {
+        operationLabel = "Multiplication (*)"
+    }
+    if choice == 4 {
+        operationLabel = "Division (/)"
+    }
+    if choice == 5 {
+        operationLabel = "Modulo (%)"
+    }
+    
+    print "Operand 1: " x
+    print "Operand 2: " y
+    print "Operation: " operationLabel
+    print "Answer: " result
+    
+    return 0
+}

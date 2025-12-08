@@ -1,0 +1,23 @@
+# Fibonacci sequence generator
+func fibonacci(n: int) -> sequence {
+    let a: int = 0
+    let b: int = 1
+    let result: sequence = [a, b]
+    
+    while length(result) < n {
+        let next: int = a + b
+        result = result + [next]
+        a = b
+        b = next
+    }
+    
+    return result
+}
+
+# Main program
+func main() -> int {
+    let count: int = input("How many Fibonacci numbers?")
+    let fib_sequence: sequence = fibonacci(count)
+    print "Fibonacci sequence: " fib_sequence
+    return 0
+}
