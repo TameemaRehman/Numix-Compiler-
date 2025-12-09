@@ -1,3 +1,5 @@
+/*semantic.cpp*/
+
 #include "../include/semantic.h"
 #include <iostream>
 
@@ -44,14 +46,12 @@ void SemanticAnalyzer::analyzeProgram(Program* program) {
     symbolManager.declareSymbol("get", DataType::INT, true);  // For array indexing
     symbolManager.declareSymbol("input", DataType::INT, true);
     
-    // First pass: declare all functions
     for (auto& function : program->functions) {
         if (!symbolManager.declareSymbol(function->name.lexeme, function->returnType, true)) {
             addError("Function '" + function->name.lexeme + "' already declared", function->name.line);
         }
     }
     
-    // Second pass: analyze function bodies
     for (auto& function : program->functions) {
         analyzeFunction(function.get());
     }
@@ -60,30 +60,25 @@ void SemanticAnalyzer::analyzeProgram(Program* program) {
 }
 
 void SemanticAnalyzer::analyzeFunction(FunctionDecl* function) {
-    // Enter function scope
     symbolManager.enterScope();
     inFunction = true;
     hasReturnStatement = false;
     currentFunctionReturnType = function->returnType;
-    
-    // Add parameters to function scope
+
     for (const auto& param : function->parameters) {
         if (!symbolManager.declareSymbol(param.first.lexeme, param.second, true)) {
             addError("Parameter '" + param.first.lexeme + "' already declared", param.first.line);
         }
     }
     
-    // Analyze function body
     for (auto& stmt : function->body) {
         analyzeStatement(stmt.get());
     }
     
-    // Check return statement for non-void functions
     if (function->returnType != DataType::VOID && !hasReturnStatement) {
         addWarning("Function '" + function->name.lexeme + "' may not return a value", function->name.line);
     }
     
-    // Exit function scope
     symbolManager.exitScope();
     inFunction = false;
 }
@@ -102,7 +97,6 @@ void SemanticAnalyzer::analyzeStatement(Stmt* stmt) {
     } else if (auto exprStmt = dynamic_cast<ExpressionStmt*>(stmt)) {
         analyzeExpressionStatement(exprStmt);
     } else if (auto blockStmt = dynamic_cast<BlockStmt*>(stmt)) {
-        // Handle BlockStmt - analyze each statement in the block
         symbolManager.enterScope();
         for (auto& s : blockStmt->statements) {
             analyzeStatement(s.get());
@@ -244,14 +238,11 @@ DataType SemanticAnalyzer::analyzeBinaryExpression(BinaryExpr* binaryExpr) {
         return DataType::UNKNOWN;
     }
     
-    // Determine result type
     switch (binaryExpr->op.type) {
         case TokenType::PLUS:
-            // Sequence concatenation or numeric addition
             if (leftType == DataType::SEQUENCE && rightType == DataType::SEQUENCE) {
                 return DataType::SEQUENCE;
             }
-            // Fall through for numeric types
             [[fallthrough]];
         case TokenType::MINUS:
         case TokenType::MULTIPLY:
@@ -328,9 +319,7 @@ DataType SemanticAnalyzer::analyzeVariableExpression(VariableExpr* varExpr) {
 DataType SemanticAnalyzer::analyzeCallExpression(CallExpr* callExpr) {
     std::string funcName = callExpr->callee.lexeme;
     
-    // Handle built-in functions
     if (funcName == "print") {
-        // print can take any number of arguments
         for (auto& arg : callExpr->arguments) {
             analyzeExpression(arg.get());
         }
@@ -378,7 +367,6 @@ DataType SemanticAnalyzer::analyzeCallExpression(CallExpr* callExpr) {
         }
         return DataType::SEQUENCE;
     } else if (funcName == "generate") {
-        // generate can have various signatures
         for (auto& arg : callExpr->arguments) {
             analyzeExpression(arg.get());
         }
@@ -395,14 +383,12 @@ DataType SemanticAnalyzer::analyzeCallExpression(CallExpr* callExpr) {
         return DataType::INT;
     }
     
-    // User-defined function
     Symbol* symbol = symbolManager.lookupSymbol(funcName);
     if (!symbol) {
         addError("Undefined function '" + funcName + "'", callExpr->callee.line);
         return DataType::UNKNOWN;
     }
     
-    // Analyze arguments
     for (auto& arg : callExpr->arguments) {
         analyzeExpression(arg.get());
     }
@@ -429,7 +415,7 @@ DataType SemanticAnalyzer::analyzeSequenceExpression(SequenceExpr* seqExpr) {
 
 bool SemanticAnalyzer::isTypeCompatible(DataType left, DataType right, TokenType op) {
     if (left == DataType::UNKNOWN || right == DataType::UNKNOWN) {
-        return true; // Don't cascade errors
+        return true; 
     }
     
     switch (op) {
@@ -437,11 +423,9 @@ bool SemanticAnalyzer::isTypeCompatible(DataType left, DataType right, TokenType
             return left == right || canCoerce(right, left);
             
         case TokenType::PLUS:
-            // Allow sequence concatenation
             if (left == DataType::SEQUENCE && right == DataType::SEQUENCE) {
                 return true;
             }
-            // Fall through for numeric types
             [[fallthrough]];
         case TokenType::MINUS:
         case TokenType::MULTIPLY:
