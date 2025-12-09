@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <cctype>
 
+
+
 std::vector<ThreeAddressCode> Optimizer::optimize() {
     // Apply optimization passes
     constantFolding();
@@ -189,4 +191,5 @@ void Optimizer::printOptimizedCode(std::ostream& out) {
     for (const auto& instr : code) {
         out << instr.toString() << std::endl;
     }
+
 }
