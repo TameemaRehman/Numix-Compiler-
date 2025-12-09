@@ -19,7 +19,7 @@ Numix is an imperative/procedural language designed specifically for working wit
 
 ```mathseq
 let x: int = 42
-let pi: float = 3.14159
+let pi: float = 3.14159265
 let isValid: bool = true
 let numbers: sequence = [1, 2, 3, 4, 5]
 ```
@@ -405,5 +405,6 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 This compiler was built as an educational project to demonstrate compiler construction principles applied to domain-specific languages for mathematical computing.
 
 # Commit Change
+
 
 
