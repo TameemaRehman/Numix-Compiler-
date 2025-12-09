@@ -404,3 +404,6 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 
 This compiler was built as an educational project to demonstrate compiler construction principles applied to domain-specific languages for mathematical computing.
 
+# Commit Change
+
+
